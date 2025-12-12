@@ -31,6 +31,7 @@
         touch-action: manipulation;
         min-height: 100vh;
         overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
       }
 
       h1,
@@ -341,26 +342,371 @@
         border-radius: 10px;
       }
 
-      /* Mobile Responsive */
+      /* ---------- MOBILE RESPONSIVE UPDATES ---------- */
       @media (max-width: 640px) {
-        .game-grid {
-          grid-template-columns: repeat(3, 1fr);
+        body {
+          font-size: 14px;
+        }
+        
+        /* Setup Screen */
+        #setup-screen {
+          padding: 16px;
+        }
+        
+        #setup-screen h2 {
+          font-size: 2rem;
+          margin-bottom: 24px;
+        }
+        
+        .toss-btn {
+          padding: 10px;
+          font-size: 14px;
+        }
+        
+        /* Game Screen Header */
+        header {
+          padding: 12px 16px;
+        }
+        
+        /* Score Panel - UPDATED FOR MOBILE */
+        .score-panel {
+          padding: 12px;
+        }
+        
+        .team-score-container {
+          display: flex;
+          flex-direction: column;
           gap: 8px;
         }
         
-        .btn-neon {
+        .team-score-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+        
+        .team-score {
+          flex: 1;
+          text-align: left;
+        }
+        
+        .team-score.team-2 {
+          text-align: right;
+        }
+        
+        .team-name {
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          margin-bottom: 4px;
+        }
+        
+        .score-display {
+          font-size: 2.5rem !important;
+          line-height: 1;
+          margin-bottom: 2px;
+        }
+        
+        .overs-info {
+          font-size: 11px;
+        }
+        
+        /* Chase Info Section - IMPROVED FOR MOBILE */
+        .chase-info-mobile {
+          width: 100%;
+          margin: 8px 0;
+          padding: 8px 12px;
+          border-radius: 10px;
+          background: rgba(234, 179, 8, 0.15);
+          border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+        
+        .chase-title {
+          font-size: 10px;
+          color: #fbbf24;
+          text-align: center;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 4px;
+        }
+        
+        .chase-numbers {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-family: 'Teko', sans-serif;
+        }
+        
+        .chase-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          flex: 1;
+        }
+        
+        .chase-label {
+          font-size: 9px;
+          color: #d1d5db;
+          text-transform: uppercase;
+          margin-bottom: 2px;
+        }
+        
+        .chase-value {
+          font-size: 1.5rem;
+          color: white;
+          font-weight: bold;
+        }
+        
+        .vs-separator {
+          font-size: 10px;
+          color: #9ca3af;
+          padding: 0 8px;
+        }
+        
+        /* Match Info Row - TWO ROWS: LABELS ON TOP, VALUES BELOW */
+        .match-info-container {
+          padding: 12px 0 8px 0;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          width: 100%;
+        }
+        
+        .match-info-labels-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 6px;
+          padding: 0 4px;
+        }
+        
+        .match-info-values-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 4px;
+        }
+        
+        .match-info-label {
+          font-size: 11px;
+          color: #9ca3af;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          font-weight: 600;
+          flex: 1;
+          text-align: center;
+          padding: 0 8px;
+        }
+        
+        .match-info-value {
+          font-size: 1.6rem;
+          font-family: 'Teko', sans-serif;
+          font-weight: 700;
+          color: white;
+          flex: 1;
+          text-align: center;
+          padding: 0 8px;
+          line-height: 1.2;
+        }
+        
+        /* Ensure equal spacing */
+        .match-info-label:nth-child(1),
+        .match-info-value:nth-child(1) {
+          text-align: left;
+        }
+        
+        .match-info-label:nth-child(2),
+        .match-info-value:nth-child(2) {
+          text-align: center;
+        }
+        
+        .match-info-label:nth-child(3),
+        .match-info-value:nth-child(3) {
+          text-align: right;
+        }
+        
+        /* Commentary */
+        #commentary-text {
+          font-size: 12px;
+          padding: 8px 0 4px 0;
+          min-height: 20px;
+        }
+        
+        /* Next Inning Button */
+        #next-inning-btn button {
+          font-size: 1.25rem;
+          padding: 12px;
+        }
+        
+        /* Controls Section */
+        .controls-section {
+          padding: 16px;
+        }
+        
+        .custom-run-section {
+          margin-bottom: 16px;
+        }
+        
+        .custom-run-input {
+          flex: 1;
+          height: 44px;
+          font-size: 16px;
+        }
+        
+        .btn-custom-run {
+          height: 44px;
+          font-size: 14px;
+        }
+        
+        /* Keypad Grid */
+        .game-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+          margin-bottom: 16px;
+        }
+        
+        .btn-keypad {
           height: 70px;
           font-size: 1.5rem;
+          border-radius: 12px;
         }
         
-        .btn-custom {
-          height: 60px;
-          font-size: 1rem;
+        .btn-four, .btn-six {
+          font-size: 1.75rem;
         }
         
+        /* Stats Section */
+        #stats-section {
+          padding-top: 16px;
+        }
+        
+        .stat-section-title {
+          font-size: 11px;
+        }
+        
+        /* Graph Bars */
         .bar {
           width: 28px;
           min-width: 28px;
+        }
+        
+        /* Event Overlay */
+        #event-text {
+          font-size: 3.5rem !important;
+        }
+        
+        /* Winner Modal */
+        #winner-modal .glass-dark {
+          padding: 20px;
+        }
+        
+        .winner-trophy {
+          font-size: 4rem;
+        }
+        
+        #winner-title {
+          font-size: 2rem;
+        }
+        
+        .winner-buttons {
+          flex-direction: column;
+          gap: 10px;
+        }
+        
+        .winner-buttons button {
+          width: 100%;
+        }
+        
+        /* Hide desktop-only elements */
+        .desktop-only {
+          display: none !important;
+        }
+        
+        /* Show mobile-only elements */
+        .mobile-only {
+          display: block !important;
+        }
+      }
+      
+      @media (max-width: 380px) {
+        .team-name {
+          font-size: 11px;
+        }
+        
+        .score-display {
+          font-size: 2rem !important;
+        }
+        
+        .btn-keypad {
+          height: 60px;
+          font-size: 1.25rem;
+        }
+        
+        .btn-four, .btn-six {
+          font-size: 1.5rem;
+        }
+        
+        .chase-value {
+          font-size: 1.25rem;
+        }
+        
+        /* Match Info - Smaller screens */
+        .match-info-label {
+          font-size: 10px;
+        }
+        
+        .match-info-value {
+          font-size: 1.4rem;
+        }
+      }
+
+      /* Desktop styles (hidden on mobile) */
+      @media (min-width: 641px) {
+        .mobile-only {
+          display: none !important;
+        }
+        
+        /* Desktop Match Info */
+        .match-info-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 16px 0 8px 0;
+        }
+        
+        .match-info-item {
+          text-align: center;
+          flex: 1;
+        }
+        
+        .match-info-label {
+          font-size: 12px;
+          color: #9ca3af;
+          margin-bottom: 4px;
+          text-transform: uppercase;
+        }
+        
+        .match-info-value {
+          font-size: 1.75rem;
+          font-family: 'Teko', sans-serif;
+          font-weight: 700;
+          color: white;
+        }
+      }
+      
+      /* Hide/Show classes */
+      .mobile-only {
+        display: none;
+      }
+      
+      /* Fix for safe areas on notched phones */
+      @supports (padding: max(0px)) {
+        body {
+          padding-left: min(0vmin, env(safe-area-inset-left));
+          padding-right: min(0vmin, env(safe-area-inset-right));
+          padding-top: min(0vmin, env(safe-area-inset-top));
+          padding-bottom: min(0vmin, env(safe-area-inset-bottom));
         }
       }
     </style>
@@ -412,7 +758,7 @@
             </div>
           </div>
           
-          <div class="flex gap-3">
+          <div class="flex gap-3 winner-buttons">
             <button
               onclick="viewScorecard()"
               class="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-xl text-sm uppercase tracking-wider transition-all"
@@ -577,23 +923,23 @@
       <!-- Game Screen -->
       <div id="game-screen" class="hidden-screen flex flex-col">
         <!-- Score Panel -->
-        <div class="p-4">
+        <div class="p-4 score-panel">
           <div class="glass-dark rounded-2xl p-5 relative overflow-hidden">
             <!-- Active Indicators -->
             <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 via-green-500 to-transparent" 
                  id="active-indicator"></div>
             
-            <!-- Teams Score -->
-            <div class="flex justify-between items-start mb-4">
+            <!-- Teams Score - DESKTOP LAYOUT -->
+            <div class="hidden md:flex justify-between items-start mb-4 desktop-only">
               <div class="flex-1">
                 <div class="flex items-center gap-2 mb-1">
                   <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" id="active-dot-1"></div>
                   <div class="text-green-400 text-xs font-bold tracking-widest uppercase truncate" 
                        id="disp-t1-name">TEAM A</div>
                 </div>
-                <div class="text-5xl font-[Teko] leading-none score-animation" 
+                <div class="text-5xl font-[Teko] leading-none score-animation score-display" 
                      id="disp-t1-score">0/0</div>
-                <div class="text-xs text-gray-400 mt-1">
+                <div class="text-xs text-gray-400 mt-1 overs-info">
                   <span id="t1-overs">0.0</span> overs
                 </div>
               </div>
@@ -627,29 +973,83 @@
                        id="disp-t2-name">TEAM B</div>
                   <div class="w-2 h-2 bg-blue-500 rounded-full opacity-50" id="active-dot-2"></div>
                 </div>
-                <div class="text-5xl font-[Teko] leading-none opacity-50" 
+                <div class="text-5xl font-[Teko] leading-none opacity-50 score-display" 
                      id="disp-t2-score">0/0</div>
-                <div class="text-xs text-gray-400 mt-1 opacity-50">
+                <div class="text-xs text-gray-400 mt-1 overs-info opacity-50">
                   <span id="t2-overs">0.0</span> overs
                 </div>
               </div>
             </div>
             
-            <!-- Match Info -->
-            <div class="flex justify-between items-center border-t border-white/10 pt-3">
-              <div class="text-center">
-                <div class="text-xs text-gray-400">OVERS</div>
-                <div class="text-2xl font-[Teko] text-white" id="main-overs">0.0</div>
+            <!-- Teams Score - MOBILE LAYOUT -->
+            <div class="team-score-container mobile-only">
+              <!-- Team 1 Row -->
+              <div class="team-score-row">
+                <div class="team-score team-1">
+                  <div class="team-name">
+                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" id="mobile-active-dot-1"></div>
+                    <span class="text-green-400 font-bold tracking-widest uppercase truncate" id="mobile-disp-t1-name">TEAM A</span>
+                  </div>
+                  <div class="text-4xl font-[Teko] leading-none score-animation score-display" id="mobile-disp-t1-score">0/0</div>
+                  <div class="text-xs text-gray-400 overs-info">
+                    <span id="mobile-t1-overs">0.0</span> overs
+                  </div>
+                </div>
+                
+                <div class="vs-separator" id="mobile-vs-badge">VS</div>
+                
+                <div class="team-score team-2">
+                  <div class="team-name justify-end">
+                    <span class="text-blue-400 font-bold tracking-widest uppercase truncate" id="mobile-disp-t2-name">TEAM B</span>
+                    <div class="w-2 h-2 bg-blue-500 rounded-full opacity-50" id="mobile-active-dot-2"></div>
+                  </div>
+                  <div class="text-4xl font-[Teko] leading-none opacity-50 score-display text-right" id="mobile-disp-t2-score">0/0</div>
+                  <div class="text-xs text-gray-400 overs-info text-right opacity-50">
+                    <span id="mobile-t2-overs">0.0</span> overs
+                  </div>
+                </div>
               </div>
               
-              <div class="text-center">
-                <div class="text-xs text-gray-400">CRR</div>
-                <div class="text-2xl font-[Teko] text-white" id="main-crr">0.0</div>
+              <!-- Chase Info - MOBILE VERSION (Better Layout) -->
+              <div id="chase-info-mobile" class="chase-info-mobile hidden">
+                <div class="chase-title">TO WIN</div>
+                <div class="chase-numbers">
+                  <div class="chase-item">
+                    <div class="chase-label">RUNS NEEDED</div>
+                    <div class="chase-value text-green-300" id="mobile-eq-runs">0</div>
+                  </div>
+                  <div class="chase-item">
+                    <div class="chase-label">BALLS LEFT</div>
+                    <div class="chase-value text-yellow-300" id="mobile-eq-balls">0</div>
+                  </div>
+                  <div class="chase-item">
+                    <div class="chase-label">TARGET</div>
+                    <div class="chase-value text-white" id="mobile-target-score">0</div>
+                  </div>
+                </div>
               </div>
               
-              <div class="text-center">
-                <div class="text-xs text-gray-400">RRR</div>
-                <div class="text-2xl font-[Teko] text-white" id="main-rrr">0.0</div>
+              <!-- Target Display - Simple Mobile Version -->
+              <div id="target-display-mobile" class="hidden mt-2 text-center">
+                <div class="text-[10px] text-gray-400 uppercase mb-1">TARGET</div>
+                <div class="text-2xl font-[Teko] text-yellow-300" id="mobile-target-only">0</div>
+              </div>
+            </div>
+            
+            <!-- Match Info - TWO ROWS LAYOUT -->
+            <div class="match-info-container">
+              <!-- Labels Row -->
+              <div class="match-info-labels-row">
+                <div class="match-info-label">OVERS</div>
+                <div class="match-info-label">CRR</div>
+                <div class="match-info-label">RRR</div>
+              </div>
+              
+              <!-- Values Row -->
+              <div class="match-info-values-row">
+                <div class="match-info-value text-white" id="main-overs">0.0</div>
+                <div class="match-info-value text-white" id="main-crr">0.0</div>
+                <div class="match-info-value text-white" id="main-rrr">0.0</div>
               </div>
             </div>
             
@@ -673,9 +1073,9 @@
         </div>
 
         <!-- Controls Section -->
-        <div class="p-4 glass-dark rounded-t-3xl flex-1">
+        <div class="p-4 glass-dark rounded-t-3xl flex-1 controls-section">
           <!-- Custom Run Input -->
-          <div class="mb-6">
+          <div class="mb-6 custom-run-section">
             <div class="text-xs text-purple-400 uppercase tracking-widest font-bold mb-2 flex items-center gap-1">
               <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
               Custom Run + Wicket
@@ -687,11 +1087,11 @@
                 min="0"
                 max="6"
                 placeholder="Runs"
-                class="flex-1 bg-slate-800/50 border border-slate-700 text-white text-center text-xl p-3 rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition"
+                class="flex-1 bg-slate-800/50 border border-slate-700 text-white text-center text-xl p-3 rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition custom-run-input"
               />
               <button
                 onclick="addCustomWicket()"
-                class="btn-neon btn-custom flex-1 rounded-xl h-auto text-lg font-bold"
+                class="btn-neon btn-custom flex-1 rounded-xl h-auto text-lg font-bold btn-custom-run"
               >
                 RUN + WICKET
               </button>
@@ -702,55 +1102,55 @@
           <div class="game-grid grid grid-cols-3 gap-3 mb-4">
             <button
               onclick="addScore(0)"
-              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko]"
+              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko] btn-keypad"
             >
               0
             </button>
             <button
               onclick="addScore(1)"
-              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko]"
+              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko] btn-keypad"
             >
               1
             </button>
             <button
               onclick="addScore(2)"
-              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko]"
+              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko] btn-keypad"
             >
               2
             </button>
             <button
               onclick="addScore(3)"
-              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko]"
+              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko] btn-keypad"
             >
               3
             </button>
             <button
               onclick="addScore(4)"
-              class="btn-neon btn-four rounded-xl h-20 text-4xl font-black font-[Teko] italic"
+              class="btn-neon btn-four rounded-xl h-20 text-4xl font-black font-[Teko] italic btn-keypad"
             >
               4
             </button>
             <button
               onclick="addScore(6)"
-              class="btn-neon btn-six rounded-xl h-20 text-4xl font-black font-[Teko] italic"
+              class="btn-neon btn-six rounded-xl h-20 text-4xl font-black font-[Teko] italic btn-keypad"
             >
               6
             </button>
             <button
               onclick="addWicket()"
-              class="btn-neon btn-out rounded-xl h-20 text-xl font-bold"
+              class="btn-neon btn-out rounded-xl h-20 text-xl font-bold btn-keypad"
             >
               OUT
             </button>
             <button
               onclick="addExtra()"
-              class="btn-neon bg-gradient-to-r from-orange-600 to-red-600 rounded-xl h-20 text-sm font-bold text-white"
+              class="btn-neon bg-gradient-to-r from-orange-600 to-red-600 rounded-xl h-20 text-sm font-bold text-white btn-keypad"
             >
               WD/NB
             </button>
             <button
               onclick="undo()"
-              class="btn-neon bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl h-20 text-sm font-bold text-gray-300"
+              class="btn-neon bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl h-20 text-sm font-bold text-gray-300 btn-keypad"
             >
               UNDO
             </button>
@@ -758,7 +1158,7 @@
 
           <!-- Statistics Section (Initially Hidden) -->
           <div id="stats-section" class="hidden space-y-6 pt-6 border-t border-slate-800">
-            <h3 class="text-center text-gray-400 uppercase tracking-[0.2em] text-xs mb-2">
+            <h3 class="text-center text-gray-400 uppercase tracking-[0.2em] text-xs mb-2 stat-section-title">
               Match Statistics
             </h3>
 
@@ -891,8 +1291,15 @@
 
         document.getElementById("setup-screen").classList.add("hidden-screen");
         document.getElementById("game-screen").classList.remove("hidden-screen");
+        
+        // Update desktop display
         document.getElementById("disp-t1-name").innerText = game.setup.t1;
         document.getElementById("disp-t2-name").innerText = game.setup.t2;
+        
+        // Update mobile display
+        document.getElementById("mobile-disp-t1-name").innerText = game.setup.t1;
+        document.getElementById("mobile-disp-t2-name").innerText = game.setup.t2;
+        
         document.getElementById("commentary-text").innerText = `${battingFirst} batting first`;
 
         playSound("win");
@@ -1064,20 +1471,39 @@
         document.getElementById("active-indicator").className = 
           "absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-blue-500 to-transparent";
         
+        // Desktop indicators
         document.getElementById("active-dot-1").classList.remove("animate-pulse");
         document.getElementById("active-dot-2").classList.remove("opacity-50");
         document.getElementById("active-dot-2").classList.add("animate-pulse");
         
+        // Mobile indicators
+        document.getElementById("mobile-active-dot-1").classList.remove("animate-pulse");
+        document.getElementById("mobile-active-dot-2").classList.remove("opacity-50");
+        document.getElementById("mobile-active-dot-2").classList.add("animate-pulse");
+        
+        // Desktop scores
         document.getElementById("disp-t1-score").classList.remove("score-animation");
         document.getElementById("disp-t1-score").classList.add("opacity-50");
         document.getElementById("disp-t2-score").classList.remove("opacity-50");
         document.getElementById("disp-t2-score").classList.add("score-animation");
         
-        // Show chase info
+        // Mobile scores
+        document.getElementById("mobile-disp-t1-score").classList.remove("score-animation");
+        document.getElementById("mobile-disp-t1-score").classList.add("opacity-50");
+        document.getElementById("mobile-disp-t2-score").classList.remove("opacity-50");
+        document.getElementById("mobile-disp-t2-score").classList.add("score-animation");
+        
+        // Show chase info - Desktop
         document.getElementById("vs-badge").classList.add("hidden");
         document.getElementById("chase-equation").classList.remove("hidden");
         document.getElementById("target-display").classList.remove("hidden");
         document.getElementById("target-score").innerText = game.status.t1Score + 1;
+        
+        // Show chase info - Mobile
+        document.getElementById("mobile-vs-badge").classList.add("hidden");
+        document.getElementById("chase-info-mobile").classList.remove("hidden");
+        document.getElementById("target-display-mobile").classList.remove("hidden");
+        document.getElementById("mobile-target-only").innerText = game.status.t1Score + 1;
 
         playSound("win");
         render();
@@ -1144,19 +1570,35 @@
 
       /* --- RENDER --- */
       function render() {
-        // Update scores with animation
+        // Update desktop scores
         const t1ScoreEl = document.getElementById("disp-t1-score");
         const t2ScoreEl = document.getElementById("disp-t2-score");
         
         t1ScoreEl.innerText = `${game.status.t1Score}/${game.status.t1Wick}`;
         t2ScoreEl.innerText = `${game.status.t2Score}/${game.status.t2Wick}`;
         
+        // Update mobile scores
+        const mobileT1ScoreEl = document.getElementById("mobile-disp-t1-score");
+        const mobileT2ScoreEl = document.getElementById("mobile-disp-t2-score");
+        
+        mobileT1ScoreEl.innerText = `${game.status.t1Score}/${game.status.t1Wick}`;
+        mobileT2ScoreEl.innerText = `${game.status.t2Score}/${game.status.t2Wick}`;
+        
+        // Add animation to active team
         if (game.status.inning === 1) {
           t1ScoreEl.classList.add("score-animation");
-          setTimeout(() => t1ScoreEl.classList.remove("score-animation"), 300);
+          mobileT1ScoreEl.classList.add("score-animation");
+          setTimeout(() => {
+            t1ScoreEl.classList.remove("score-animation");
+            mobileT1ScoreEl.classList.remove("score-animation");
+          }, 300);
         } else {
           t2ScoreEl.classList.add("score-animation");
-          setTimeout(() => t2ScoreEl.classList.remove("score-animation"), 300);
+          mobileT2ScoreEl.classList.add("score-animation");
+          setTimeout(() => {
+            t2ScoreEl.classList.remove("score-animation");
+            mobileT2ScoreEl.classList.remove("score-animation");
+          }, 300);
         }
         
         // Calculate overs and rates
@@ -1164,6 +1606,7 @@
         const currentScore = game.status.inning === 1 ? game.status.t1Score : game.status.t2Score;
         const overs = `${Math.floor(balls / 6)}.${balls % 6}`;
         
+        // Update match info values
         document.getElementById("main-overs").innerText = overs;
         document.getElementById("main-crr").innerText = 
           balls > 0 ? ((currentScore / balls) * 6).toFixed(1) : "0.0";
@@ -1171,8 +1614,10 @@
         // Update team-specific overs
         if (game.status.inning === 1) {
           document.getElementById("t1-overs").innerText = overs;
+          document.getElementById("mobile-t1-overs").innerText = overs;
         } else {
           document.getElementById("t2-overs").innerText = overs;
+          document.getElementById("mobile-t2-overs").innerText = overs;
         }
         
         // Calculate RRR for second inning
@@ -1182,10 +1627,16 @@
           const ballsLeft = totalBalls - game.status.balls;
           const oversLeft = ballsLeft / 6;
           
+          // Desktop
           document.getElementById("eq-runs").innerText = Math.max(0, needed);
           document.getElementById("eq-balls").innerText = Math.max(0, ballsLeft);
           document.getElementById("main-rrr").innerText = 
             ballsLeft > 0 ? ((needed / oversLeft) || 0).toFixed(1) : "0.0";
+            
+          // Mobile
+          document.getElementById("mobile-eq-runs").innerText = Math.max(0, needed);
+          document.getElementById("mobile-eq-balls").innerText = Math.max(0, ballsLeft);
+          document.getElementById("mobile-target-score").innerText = game.status.t1Score + 1;
         } else {
           document.getElementById("main-rrr").innerText = "0.0";
         }
@@ -1207,7 +1658,7 @@
 
       /* --- FIXED RUN RATE GRAPH FUNCTION --- */
       function renderVisuals() {
-        // 1. RUN RATE GRAPH - FIXED VERSION
+        // 1. RUN RATE GRAPH
         const chartDiv = document.getElementById("chart-container");
         chartDiv.innerHTML = "";
         
@@ -1268,7 +1719,7 @@
             const bar = document.createElement("div");
             bar.className = `bar ${isCurrentOver ? "current" : "filled"}`;
             bar.style.height = `${barHeight}px`;
-            bar.style.width = "36px";
+            bar.style.width = window.innerWidth < 640 ? "28px" : "36px";
             
             // Run count on top
             const runsLabel = document.createElement("div");
@@ -1311,6 +1762,9 @@
           relevantHistory.forEach((h) => {
             const ball = document.createElement("div");
             ball.className = "stat-ball shrink-0";
+            ball.style.width = window.innerWidth < 640 ? "24px" : "28px";
+            ball.style.height = window.innerWidth < 640 ? "24px" : "28px";
+            ball.style.fontSize = window.innerWidth < 640 ? "10px" : "12px";
             
             if (h.type === "wicket") {
               ball.style.background = "linear-gradient(145deg, #ef4444, #dc2626)";

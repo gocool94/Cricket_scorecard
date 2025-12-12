@@ -6,32 +6,31 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>Gully Cricket: Green Edition</title>
+    <title>Gully Cricket: Night Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Teko:wght@300;400;600;700&family=Roboto:wght@400;700;900&display=swap");
 
       :root {
-        --primary-green: #10b981;
-        --dark-green: #059669;
-        --light-green: #34d399;
-        --bright-green: #22c55e;
-        --accent-green: #84cc16;
         --neon-green: #39ff14;
-        --gold: #f59e0b;
-        --red: #ef4444;
-        --blue: #3b82f6;
-        --purple: #8b5cf6;
+        --neon-blue: #00ffff;
+        --neon-red: #ff003c;
+        --neon-gold: #ffd700;
+        --neon-purple: #bf40bf;
       }
 
       body {
         font-family: "Roboto", sans-serif;
-        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-        color: #1f2937;
+        background-color: #0f172a;
+        background-image: radial-gradient(
+          circle at 50% 0%,
+          #1a1a2e 0%,
+          #0f172a 100%
+        );
+        color: #fff;
         touch-action: manipulation;
         min-height: 100vh;
         overflow-x: hidden;
-        transition: all 0.3s ease;
       }
 
       h1,
@@ -51,7 +50,7 @@
           transform: translateX(0) skewX(-15deg);
           opacity: 1;
           filter: blur(0);
-          text-shadow: 0 0 20px var(--blue);
+          text-shadow: 0 0 30px var(--neon-blue);
         }
         80% {
           transform: translateX(0) skewX(0deg) scale(1.1);
@@ -64,29 +63,26 @@
       
       @keyframes boom-pulse {
         0% {
-          transform: scale(0) rotate(0deg);
+          transform: scale(0);
           opacity: 0;
           filter: brightness(1);
         }
         20% {
-          transform: scale(1.5) rotate(10deg);
+          transform: scale(1.5);
           opacity: 1;
-          text-shadow: 0 0 40px var(--bright-green), 
-                       0 0 80px var(--bright-green);
+          text-shadow: 0 0 40px var(--neon-green), 
+                       0 0 80px var(--neon-green);
         }
         40% {
-          transform: scale(1.2) rotate(-5deg);
+          transform: scale(1.2);
           filter: brightness(1.5);
         }
         60% {
-          transform: scale(1.4) rotate(5deg);
+          transform: scale(1.4);
           filter: brightness(2);
         }
-        80% {
-          transform: scale(1.3) rotate(-2deg);
-        }
         100% {
-          transform: scale(3) rotate(10deg);
+          transform: scale(3);
           opacity: 0;
           filter: brightness(1);
         }
@@ -94,20 +90,20 @@
       
       @keyframes stamp-down {
         0% {
-          transform: scale(3) rotate(15deg);
+          transform: scale(3) rotate(10deg);
           opacity: 0;
         }
         20% {
-          transform: scale(1.1) rotate(-8deg);
+          transform: scale(1.1) rotate(-5deg);
           opacity: 1;
-          text-shadow: 0 0 25px var(--red);
+          text-shadow: 0 0 25px red;
         }
         40% {
-          transform: rotate(8deg);
+          transform: rotate(5deg);
           filter: brightness(1.5);
         }
         60% {
-          transform: rotate(-8deg);
+          transform: rotate(-5deg);
         }
         80% {
           transform: scale(1) rotate(0);
@@ -121,34 +117,34 @@
       
       @keyframes victory-glow {
         0% {
-          filter: drop-shadow(0 0 5px var(--gold)) brightness(1);
+          filter: drop-shadow(0 0 5px var(--neon-gold)) brightness(1);
           transform: scale(1) rotate(0deg);
         }
         25% {
-          filter: drop-shadow(0 0 40px var(--gold)) brightness(1.3);
-          transform: scale(1.1) rotate(8deg);
+          filter: drop-shadow(0 0 40px var(--neon-gold)) brightness(1.3);
+          transform: scale(1.1) rotate(5deg);
         }
         50% {
-          filter: drop-shadow(0 0 60px var(--gold)) brightness(1.5);
-          transform: scale(1.05) rotate(-8deg);
+          filter: drop-shadow(0 0 60px var(--neon-gold)) brightness(1.5);
+          transform: scale(1.05) rotate(-5deg);
         }
         75% {
-          filter: drop-shadow(0 0 40px var(--gold)) brightness(1.3);
-          transform: scale(1.1) rotate(8deg);
+          filter: drop-shadow(0 0 40px var(--neon-gold)) brightness(1.3);
+          transform: scale(1.1) rotate(5deg);
         }
         100% {
-          filter: drop-shadow(0 0 5px var(--gold)) brightness(1);
+          filter: drop-shadow(0 0 5px var(--neon-gold)) brightness(1);
           transform: scale(1) rotate(0deg);
         }
       }
       
       @keyframes confetti-fall {
         0% {
-          transform: translateY(-100px) rotate(0deg) scale(0.5);
+          transform: translateY(-100px) rotate(0deg);
           opacity: 1;
         }
         100% {
-          transform: translateY(100vh) rotate(360deg) scale(1);
+          transform: translateY(100vh) rotate(360deg);
           opacity: 0;
         }
       }
@@ -158,81 +154,29 @@
           transform: scale(1);
         }
         50% {
-          transform: scale(1.15);
-          text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-        }
-      }
-      
-      @keyframes theme-switch {
-        0% {
-          transform: scale(1) rotate(0deg);
-        }
-        50% {
-          transform: scale(1.3) rotate(180deg);
-        }
-        100% {
-          transform: scale(1) rotate(360deg);
-        }
-      }
-      
-      @keyframes button-press {
-        0% {
-          transform: scale(1);
-        }
-        30% {
-          transform: scale(0.95);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-      
-      @keyframes float {
-        0%, 100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-      
-      @keyframes pulse-glow {
-        0%, 100% {
-          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(16, 185, 129, 0);
-        }
-      }
-      
-      @keyframes shimmer {
-        0% {
-          background-position: -200% center;
-        }
-        100% {
-          background-position: 200% center;
+          transform: scale(1.1);
         }
       }
 
       .anim-four-text {
         animation: slide-blur 1.2s ease-out forwards;
-        color: var(--blue);
-        text-shadow: 0 0 20px var(--blue);
+        color: var(--neon-blue);
+        text-shadow: 0 0 20px var(--neon-blue);
       }
       
       .anim-six-text {
         animation: boom-pulse 1.5s ease-out forwards;
-        color: var(--bright-green);
+        color: var(--neon-green);
       }
       
       .anim-out-text {
         animation: stamp-down 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        color: var(--red);
-        text-shadow: 0 0 20px var(--red);
-        border: 4px solid rgba(239, 68, 68, 0.5);
+        color: var(--neon-red);
+        text-shadow: 0 0 20px red;
+        border: 4px solid rgba(255, 0, 0, 0.5);
         padding: 15px 50px;
         border-radius: 15px;
-        background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(239, 68, 68, 0.1));
+        background: linear-gradient(145deg, rgba(0,0,0,0.9), rgba(100,0,0,0.3));
         backdrop-filter: blur(5px);
       }
       
@@ -240,133 +184,93 @@
         animation: victory-glow 2s infinite ease-in-out;
       }
 
-      .theme-switch-animation {
-        animation: theme-switch 0.6s ease-out;
-      }
-
       /* UI ELEMENTS */
-      .glass-light {
-        background: rgba(255, 255, 255, 0.85);
+      .glass-dark {
+        background: rgba(30, 41, 59, 0.8);
         backdrop-filter: blur(12px);
-        border: 2px solid rgba(16, 185, 129, 0.2);
-        box-shadow: 
-          0 8px 32px rgba(16, 185, 129, 0.1),
-          inset 0 1px 0 rgba(255, 255, 255, 0.5);
-        transition: all 0.3s ease;
-      }
-      
-      .glass-light:hover {
-        box-shadow: 
-          0 12px 40px rgba(16, 185, 129, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
       }
       
       .glass-card {
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(16, 185, 129, 0.15);
-        box-shadow: 
-          0 4px 20px rgba(16, 185, 129, 0.08),
-          inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        transition: all 0.3s ease;
-      }
-      
-      .glass-card:hover {
-        box-shadow: 
-          0 6px 25px rgba(16, 185, 129, 0.12),
-          inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
       }
 
       .btn-neon {
         position: relative;
         overflow: hidden;
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 2px solid transparent;
-        background-clip: padding-box;
+        transition: all 0.1s ease;
+        border-bottom: 4px solid rgba(0, 0, 0, 0.3);
         transform-style: preserve-3d;
       }
       
       .btn-neon:active {
-        animation: button-press 0.2s ease;
+        transform: translateY(4px) scale(0.98);
+        border-bottom-width: 0;
       }
       
       .btn-neon:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.05);
-      }
-      
-      .btn-neon::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        transition: 0.5s;
-      }
-      
-      .btn-neon:hover::before {
-        left: 100%;
+        filter: brightness(1.1);
       }
 
       .btn-run {
-        background: linear-gradient(145deg, #d1fae5, #a7f3d0);
-        color: #065f46;
-        border-color: #10b981;
-        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+        background: linear-gradient(145deg, #334155, #1e293b);
+        color: white;
+        border-color: #0f172a;
       }
       
       .btn-four {
-        background: linear-gradient(145deg, #60a5fa, #3b82f6);
+        background: linear-gradient(145deg, #0ea5e9, #0284c7);
         color: white;
-        border-color: #1d4ed8;
-        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        border-color: #0369a1;
+        box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
       }
       
       .btn-six {
-        background: linear-gradient(145deg, var(--bright-green), var(--dark-green));
+        background: linear-gradient(145deg, #22c55e, #16a34a);
         color: white;
-        border-color: #16a34a;
-        box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+        border-color: #15803d;
+        box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
       }
       
       .btn-out {
-        background: linear-gradient(145deg, #fca5a5, #f87171);
+        background: linear-gradient(145deg, #ef4444, #dc2626);
         color: white;
-        border-color: #dc2626;
-        box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+        border-color: #b91c1c;
+        box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
       }
       
       .btn-custom {
-        background: linear-gradient(145deg, #a78bfa, #8b5cf6);
+        background: linear-gradient(145deg, #8b5cf6, #7c3aed);
         color: white;
-        border-color: #7c3aed;
-        box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+        border-color: #6d28d9;
+        box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
       }
 
       .toss-btn {
-        background: white;
-        border: 2px solid #d1fae5;
-        color: #374151;
+        background: #1e293b;
+        border: 1px solid #475569;
+        color: #94a3b8;
         padding: 12px;
         width: 100%;
-        border-radius: 12px;
+        border-radius: 10px;
         font-weight: bold;
         transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       }
       
       .toss-btn.selected {
-        background: linear-gradient(145deg, var(--gold), #fbbf24);
-        color: white;
-        border-color: var(--gold);
-        box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
-        transform: translateY(-2px) scale(1.02);
+        background: linear-gradient(145deg, var(--neon-gold), #ffaa00);
+        color: black;
+        border-color: white;
+        box-shadow: 0 0 20px var(--neon-gold);
+        transform: translateY(-2px);
       }
 
       .score-animation {
-        animation: score-bounce 0.4s ease;
+        animation: score-bounce 0.3s ease;
       }
 
       .hidden-screen {
@@ -374,339 +278,90 @@
       }
 
       .stat-ball {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 13px;
+        font-size: 12px;
         font-weight: bold;
-        color: white;
-        background: linear-gradient(145deg, var(--primary-green), var(--dark-green));
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: #1e293b;
+        background: #cbd5e1;
+        transition: transform 0.2s;
       }
       
       .stat-ball:hover {
-        transform: scale(1.15) rotate(5deg);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        transform: scale(1.1);
       }
       
       .confetti {
         position: fixed;
-        width: 12px;
-        height: 12px;
+        width: 15px;
+        height: 15px;
         opacity: 0;
         z-index: 9999;
         pointer-events: none;
-        border-radius: 50%;
       }
 
       /* Graph Bar Styles */
       .bar {
-        width: 40px;
-        min-width: 40px;
-        background: linear-gradient(to top, #d1fae5, #a7f3d0);
-        border-radius: 10px 10px 0 0;
+        width: 36px;
+        min-width: 36px;
+        background: #334155;
+        border-radius: 8px 8px 0 0;
         position: relative;
-        transition: height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+        transition: height 0.3s ease;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
       }
       
       .bar.filled {
-        background: linear-gradient(to top, var(--primary-green), var(--dark-green));
-        box-shadow: 
-          0 0 15px rgba(16, 185, 129, 0.4),
-          inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+        background: linear-gradient(to top, var(--neon-green), #22c55e);
+        box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
       }
       
       .bar.current {
-        background: linear-gradient(to top, var(--gold), #fbbf24);
-        box-shadow: 
-          0 0 20px rgba(245, 158, 11, 0.5),
-          inset 0 -2px 0 rgba(0, 0, 0, 0.1);
-        animation: pulse-glow 2s infinite;
-      }
-
-      /* Theme Toggle Switch */
-      .theme-toggle {
-        position: relative;
-        width: 60px;
-        height: 30px;
-        border-radius: 15px;
-        background: linear-gradient(145deg, #d1fae5, #a7f3d0);
-        border: 2px solid var(--primary-green);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
-      
-      .theme-toggle:hover {
-        transform: scale(1.05);
-      }
-      
-      .theme-toggle-slider {
-        position: absolute;
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        background: linear-gradient(145deg, var(--primary-green), var(--dark-green));
-        top: 1px;
-        left: 1px;
-        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      }
-      
-      .theme-toggle-slider::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 50%;
-        background: linear-gradient(145deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
-      }
-
-      .theme-icon {
-        transition: opacity 0.3s ease;
-        position: relative;
-        z-index: 1;
-      }
-      
-      .sun-icon {
-        color: #fbbf24;
-      }
-      
-      .moon-icon {
-        color: #3b82f6;
+        background: linear-gradient(to top, var(--neon-gold), #eab308);
+        box-shadow: 0 0 15px rgba(234, 179, 8, 0.5);
       }
 
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
       }
       
       ::-webkit-scrollbar-track {
-        background: rgba(16, 185, 129, 0.1);
+        background: rgba(255, 255, 255, 0.05);
         border-radius: 10px;
       }
       
       ::-webkit-scrollbar-thumb {
-        background: linear-gradient(45deg, var(--primary-green), var(--dark-green));
+        background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
         border-radius: 10px;
-        transition: all 0.3s ease;
-      }
-      
-      ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(45deg, var(--dark-green), var(--primary-green));
       }
 
       /* Mobile Responsive */
       @media (max-width: 640px) {
         .game-grid {
           grid-template-columns: repeat(3, 1fr);
-          gap: 10px;
+          gap: 8px;
         }
         
         .btn-neon {
-          height: 75px;
-          font-size: 1.6rem;
+          height: 70px;
+          font-size: 1.5rem;
         }
         
         .btn-custom {
-          height: 65px;
-          font-size: 1.1rem;
+          height: 60px;
+          font-size: 1rem;
         }
         
         .bar {
-          width: 32px;
-          min-width: 32px;
+          width: 28px;
+          min-width: 28px;
         }
-        
-        .theme-toggle {
-          width: 55px;
-          height: 28px;
-        }
-      }
-
-      /* Setup Screen Backgrounds */
-      #setup-screen {
-        background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
-      }
-
-      /* Input Fields */
-      input, select, textarea {
-        background-color: white;
-        border: 2px solid #d1fae5;
-        color: #1f2937;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      }
-      
-      input:focus, select:focus, textarea:focus {
-        border-color: var(--primary-green);
-        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
-        outline: none;
-      }
-
-      /* Custom Run Input specific */
-      #custom-run {
-        background-color: white;
-      }
-
-      /* Chase Display Row */
-      .chase-display-row {
-        background: linear-gradient(90deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.08));
-        border: 2px solid rgba(245, 158, 11, 0.3);
-        border-radius: 16px;
-        padding: 14px 18px;
-        margin-top: 15px;
-        animation: pulse-glow 3s infinite;
-        backdrop-filter: blur(10px);
-      }
-
-      /* Active Team Indicator */
-      .active-team-indicator {
-        background: linear-gradient(90deg, var(--primary-green), var(--light-green));
-        height: 4px;
-        border-radius: 2px;
-        animation: shimmer 2s infinite linear;
-        background-size: 200% auto;
-      }
-
-      /* Score Display Enhancement */
-      .score-display {
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        position: relative;
-      }
-      
-      .score-display::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, var(--primary-green), transparent);
-        opacity: 0.5;
-      }
-
-      /* Header Styling */
-      .header-gradient {
-        background: linear-gradient(135deg, white, #f0fdf4);
-        border-bottom: 3px solid var(--primary-green);
-      }
-
-      /* Setup Screen Gradient */
-      .setup-gradient {
-        background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 50%, #a7f3d0 100%);
-      }
-
-      /* Shimmer Effect for Important Elements */
-      .shimmer-text {
-        background: linear-gradient(90deg, var(--primary-green), var(--light-green), var(--primary-green));
-        background-size: 200% auto;
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shimmer 3s infinite linear;
-      }
-
-      /* Next Inning Button Enhancement */
-      .next-inning-btn {
-        background: linear-gradient(145deg, var(--blue), #2563eb);
-        color: white;
-        border: none;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-      }
-      
-      .next-inning-btn:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
-      }
-      
-      .next-inning-btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-        transition: 0.5s;
-      }
-      
-      .next-inning-btn:hover::before {
-        left: 100%;
-      }
-
-      /* Undo Button Enhancement */
-      .undo-btn {
-        background: linear-gradient(145deg, #f3f4f6, #e5e7eb);
-        color: #6b7280;
-        border: 2px solid #d1d5db;
-      }
-      
-      .undo-btn:hover {
-        background: linear-gradient(145deg, #e5e7eb, #d1d5db);
-        color: #4b5563;
-      }
-
-      /* Share Button */
-      .share-btn {
-        background: linear-gradient(145deg, white, #f9fafb);
-        border: 2px solid var(--primary-green);
-        color: var(--primary-green);
-        transition: all 0.3s ease;
-      }
-      
-      .share-btn:hover {
-        background: var(--primary-green);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
-      }
-
-      /* Statistics Section Enhancement */
-      .stats-section {
-        border-top: 3px solid var(--primary-green);
-        background: linear-gradient(to bottom, rgba(240, 253, 244, 0.7), rgba(220, 252, 231, 0.3));
-      }
-
-      /* Toss Section Styling */
-      .toss-section {
-        background: linear-gradient(145deg, white, #f0fdf4);
-        border: 2px solid rgba(16, 185, 129, 0.2);
-      }
-
-      /* Floating Animation for Trophy */
-      .floating-trophy {
-        animation: float 3s ease-in-out infinite;
-      }
-
-      /* Enhanced Commentary */
-      .commentary-text {
-        background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
-        border-radius: 12px;
-        padding: 10px 15px;
-        border-left: 4px solid var(--primary-green);
-        font-style: italic;
-        transition: all 0.3s ease;
-      }
-      
-      .commentary-text:hover {
-        background: linear-gradient(90deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.1));
-        transform: translateX(5px);
       }
     </style>
   </head>
@@ -717,7 +372,7 @@
     <!-- Event Overlay -->
     <div
       id="event-overlay"
-      class="fixed inset-0 flex items-center justify-center pointer-events-none z-[100] hidden bg-white/90 backdrop-blur-sm"
+      class="fixed inset-0 flex items-center justify-center pointer-events-none z-[100] hidden bg-black/70 backdrop-blur-sm"
     >
       <div
         id="event-text"
@@ -728,45 +383,45 @@
     <!-- Winner Modal -->
     <div
       id="winner-modal"
-      class="fixed inset-0 z-[110] hidden flex-col items-center justify-center bg-white/95 backdrop-blur-xl p-4"
+      class="fixed inset-0 z-[110] hidden flex-col items-center justify-center bg-black/95 backdrop-blur-xl p-4"
     >
-      <div class="max-w-md w-full glass-light rounded-3xl p-8 relative overflow-hidden">
+      <div class="max-w-md w-full glass-dark rounded-2xl p-8 relative overflow-hidden">
         <!-- Winner Decoration -->
-        <div class="absolute -top-10 -right-10 w-40 h-40 bg-green-200 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-yellow-200 rounded-full blur-3xl"></div>
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
         
         <div class="text-center relative z-10">
-          <div class="text-8xl mb-4 winner-trophy floating-trophy">🏆</div>
+          <div class="text-8xl mb-4 winner-trophy">🏆</div>
           <h2
             id="winner-title"
-            class="text-4xl md:text-5xl font-bold text-yellow-500 mb-3 font-[Teko] uppercase tracking-wider shimmer-text"
+            class="text-4xl md:text-5xl font-bold text-yellow-400 mb-3 font-[Teko] uppercase tracking-wider"
           ></h2>
-          <p id="winner-desc" class="text-gray-600 text-lg mb-6 font-medium"></p>
+          <p id="winner-desc" class="text-gray-300 text-lg mb-6 font-light"></p>
           
-          <div class="glass-card p-6 rounded-2xl mb-8">
-            <h3 class="text-gray-500 text-sm uppercase tracking-wider mb-4">Final Scorecard</h3>
-            <div class="grid grid-cols-2 gap-6">
+          <div class="glass-card p-4 rounded-xl mb-6">
+            <h3 class="text-gray-400 text-sm uppercase tracking-wider mb-2">Final Scorecard</h3>
+            <div class="grid grid-cols-2 gap-4">
               <div class="text-center">
-                <div class="text-green-600 font-bold text-lg" id="winner-team1"></div>
-                <div class="text-3xl font-[Teko] text-gray-800 font-bold" id="winner-score1"></div>
+                <div class="text-green-400 font-bold text-lg" id="winner-team1"></div>
+                <div class="text-2xl font-[Teko]" id="winner-score1"></div>
               </div>
               <div class="text-center">
-                <div class="text-blue-600 font-bold text-lg" id="winner-team2"></div>
-                <div class="text-3xl font-[Teko] text-gray-800 font-bold" id="winner-score2"></div>
+                <div class="text-blue-400 font-bold text-lg" id="winner-team2"></div>
+                <div class="text-2xl font-[Teko]" id="winner-score2"></div>
               </div>
             </div>
           </div>
           
-          <div class="flex gap-4">
+          <div class="flex gap-3">
             <button
               onclick="viewScorecard()"
-              class="flex-1 glass-card hover:bg-gray-50 text-gray-700 font-bold py-4 rounded-xl text-sm uppercase tracking-wider transition-all hover:scale-105"
+              class="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-xl text-sm uppercase tracking-wider transition-all"
             >
               View Scorecard
             </button>
             <button
               onclick="resetGame()"
-              class="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-white font-bold py-4 rounded-xl text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all hover:scale-105 hover:shadow-[0_0_25px_rgba(245,158,11,0.4)]"
+              class="flex-1 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-black font-bold py-3 rounded-xl text-sm uppercase tracking-wider shadow-[0_0_15px_rgba(234,179,8,0.5)] transition-all"
             >
               New Match
             </button>
@@ -778,34 +433,25 @@
     <!-- Main Container -->
     <div class="flex-1 flex flex-col max-w-md mx-auto w-full relative">
       <!-- Header -->
-      <header class="p-4 flex justify-between items-center sticky top-0 z-40 header-gradient shadow-lg">
-        <div class="flex items-center gap-3">
-          <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_#10b981]"></div>
-          <h1 class="text-xl font-bold tracking-widest text-gray-800">
-            <span class="shimmer-text">GULLY</span><span class="text-green-600">PRO</span>
+      <header class="p-4 flex justify-between items-center sticky top-0 z-40 glass-dark">
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+          <h1 class="text-xl font-bold tracking-widest text-gray-300">
+            GULLY<span class="text-green-400">PRO</span>
           </h1>
         </div>
-        <div class="flex gap-3">
-          <!-- Theme Toggle -->
-          <div class="flex items-center gap-2 mr-1">
-            <span class="text-xs text-gray-600 hidden md:inline font-medium">Theme</span>
-            <div class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
-              <div class="theme-toggle-slider">
-                <span class="theme-icon sun-icon">☀️</span>
-              </div>
-            </div>
-          </div>
+        <div class="flex gap-2">
           <button
             onclick="toggleStats()"
-            class="text-xs glass-card hover:bg-green-50 text-green-700 px-4 py-2 rounded-lg border border-green-200 font-medium transition-all hover:scale-105"
+            class="text-xs bg-gray-800 px-3 py-1 rounded border border-gray-700 hover:border-blue-500 hover:text-blue-400 transition"
           >
-            📊 STATS
+            STATS
           </button>
           <button
             onclick="confirmReset()"
-            class="text-xs glass-card hover:bg-red-50 text-red-600 px-4 py-2 rounded-lg border border-red-200 font-medium transition-all hover:scale-105"
+            class="text-xs bg-gray-800 px-3 py-1 rounded border border-gray-700 hover:border-red-500 hover:text-red-500 transition"
           >
-            🔄 RESTART
+            RESTART
           </button>
         </div>
       </header>
@@ -813,88 +459,84 @@
       <!-- Setup Screen -->
       <div
         id="setup-screen"
-        class="fixed inset-0 z-50 flex flex-col p-6 overflow-y-auto setup-gradient"
+        class="fixed inset-0 z-50 bg-gradient-to-b from-slate-900 to-slate-950 flex flex-col p-6 overflow-y-auto"
       >
         <div class="flex-1">
-          <h2 class="text-center text-4xl mb-10 tracking-widest relative">
-            <span class="bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent">
-              TURF CRICKET
+          <h2 class="text-center text-4xl text-white mb-8 tracking-widest relative">
+            <span class="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+              MATCH SETUP
             </span>
-            <div class="absolute bottom-0 left-1/4 w-1/2 h-2 bg-gradient-to-r from-green-400 to-green-500 rounded-full"></div>
+            <div class="absolute bottom-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-green-500 to-blue-500"></div>
           </h2>
 
-          <div class="space-y-8 max-w-sm mx-auto">
+          <div class="space-y-6 max-w-sm mx-auto">
             <!-- Team Names -->
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="text-xs text-green-600 uppercase tracking-widest font-bold flex items-center gap-2 mb-3">
-                  <span class="w-3 h-3 bg-green-500 rounded-full shadow-[0_0_8px_#10b981]"></span>
+                <label class="text-xs text-green-400 uppercase tracking-widest font-bold flex items-center gap-1 mb-2">
+                  <span class="w-2 h-2 bg-green-500 rounded-full"></span>
                   Team A
                 </label>
                 <input
                   type="text"
                   id="t1-name"
-                  value="Suresh Warriors"
+                  value="Suresh Cricketers"
                   oninput="updateTossLabels()"
-                  class="w-full border-2 border-green-200 text-gray-800 text-lg p-4 rounded-2xl focus:outline-none focus:border-green-500 focus:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all"
-                  placeholder="Enter team name"
+                  class="w-full bg-slate-800/50 border border-slate-700 text-white text-lg p-3 rounded-xl focus:outline-none focus:border-green-500 focus:shadow-[0_0_20px_rgba(34,197,94,0.3)] transition"
                 />
               </div>
               <div>
-                <label class="text-xs text-green-600 uppercase tracking-widest font-bold flex items-center gap-2 mb-3">
-                  <span class="w-3 h-3 bg-green-500 rounded-full shadow-[0_0_8px_#10b981]"></span>
+                <label class="text-xs text-blue-400 uppercase tracking-widest font-bold flex items-center gap-1 mb-2">
+                  <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
                   Team B
                 </label>
                 <input
                   type="text"
                   id="t2-name"
-                  value="Raj Rangers"
+                  value="Raj Super Giants"
                   oninput="updateTossLabels()"
-                  class="w-full border-2 border-green-200 text-gray-800 text-lg p-4 rounded-2xl focus:outline-none focus:border-green-500 focus:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all"
-                  placeholder="Enter team name"
+                  class="w-full bg-slate-800/50 border border-slate-700 text-white text-lg p-3 rounded-xl focus:outline-none focus:border-blue-500 focus:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition"
                 />
               </div>
             </div>
 
             <!-- Overs -->
             <div>
-              <label class="text-xs text-green-600 uppercase tracking-widest font-bold flex items-center gap-2 mb-3">
-                <span class="w-3 h-3 bg-yellow-500 rounded-full shadow-[0_0_8px_#f59e0b]"></span>
+              <label class="text-xs text-yellow-400 uppercase tracking-widest font-bold flex items-center gap-1 mb-2">
+                <span class="w-2 h-2 bg-yellow-500 rounded-full"></span>
                 Total Overs
               </label>
               <input
                 type="number"
                 id="match-overs"
                 placeholder="Ex: 5"
-                value="8"
+                value=""
                 min="1"
                 max="20"
-                class="w-full border-2 border-green-200 text-gray-800 text-2xl p-5 rounded-2xl focus:outline-none focus:border-green-500 focus:shadow-[0_0_25px_rgba(16,185,129,0.3)] transition-all text-center font-bold"
+                class="w-full bg-slate-800/50 border border-slate-700 text-white text-xl p-4 rounded-xl focus:outline-none focus:border-yellow-500 focus:shadow-[0_0_20px_rgba(234,179,8,0.4)] transition text-center"
               />
             </div>
 
             <!-- Toss Section -->
-            <div class="toss-section p-6 rounded-2xl shadow-lg">
-              <label class="text-xs text-gray-600 uppercase tracking-widest font-bold block mb-6 text-center border-b border-green-100 pb-3">
-                🎯 TOSS RESULT
+            <div class="glass-card p-4 rounded-xl">
+              <label class="text-xs text-gray-300 uppercase tracking-widest font-bold block mb-4 text-center border-b border-gray-700 pb-2">
+                TOSS RESULT
               </label>
               
-              <div class="mb-6">
-                <span class="text-sm text-gray-700 font-bold block mb-3 flex items-center gap-2">
-                  <span class="text-green-500">✓</span> Who Won Toss?
-                </span>
-                <div class="grid grid-cols-2 gap-4">
+              <div class="mb-4">
+                <span class="text-[11px] uppercase text-gray-400 font-bold block mb-2">Who Won Toss?</span>
+                <div class="grid grid-cols-2 gap-2">
                   <button
                     id="toss-t1"
                     onclick="selectTossWinner('t1')"
-                    class="toss-btn selected hover:scale-105"
+                    class="toss-btn selected"
                   >
                     Team A
                   </button>
                   <button
                     id="toss-t2"
                     onclick="selectTossWinner('t2')"
-                    class="toss-btn hover:scale-105"
+                    class="toss-btn"
                   >
                     Team B
                   </button>
@@ -902,21 +544,19 @@
               </div>
               
               <div>
-                <span class="text-sm text-gray-700 font-bold block mb-3 flex items-center gap-2">
-                  <span class="text-green-500">✓</span> Elected To?
-                </span>
-                <div class="grid grid-cols-2 gap-4">
+                <span class="text-[11px] uppercase text-gray-400 font-bold block mb-2">Elected To?</span>
+                <div class="grid grid-cols-2 gap-2">
                   <button
                     id="opt-bat"
                     onclick="selectTossChoice('bat')"
-                    class="toss-btn selected hover:scale-105"
+                    class="toss-btn selected"
                   >
                     🏏 BAT
                   </button>
                   <button
                     id="opt-bowl"
                     onclick="selectTossChoice('bowl')"
-                    class="toss-btn hover:scale-105"
+                    class="toss-btn"
                   >
                     🎾 BOWL
                   </button>
@@ -928,114 +568,94 @@
 
         <button
           onclick="startGame()"
-          class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white font-[Teko] text-3xl py-5 rounded-2xl shadow-xl tracking-wide hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-all active:scale-95 mt-8 transform hover:-translate-y-1"
+          class="w-full bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 text-white font-[Teko] text-3xl py-4 rounded-xl shadow-lg tracking-wide hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] transition-all active:scale-95 mt-6"
         >
-          🏏 PLAY BALL
+          PLAY BALL
         </button>
       </div>
 
       <!-- Game Screen -->
       <div id="game-screen" class="hidden-screen flex flex-col">
         <!-- Score Panel -->
-        <div class="p-5">
-          <div class="glass-light rounded-3xl p-6 relative overflow-hidden">
-            <!-- Active Indicator -->
-            <div class="active-team-indicator mb-4" 
+        <div class="p-4">
+          <div class="glass-dark rounded-2xl p-5 relative overflow-hidden">
+            <!-- Active Indicators -->
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 via-green-500 to-transparent" 
                  id="active-indicator"></div>
             
-            <!-- Teams Score - Compact Row -->
-            <div class="flex justify-between items-center mb-3">
-              <!-- Team 1 (Batting First) -->
+            <!-- Teams Score -->
+            <div class="flex justify-between items-start mb-4">
               <div class="flex-1">
-                <div class="flex items-center gap-3 mb-2">
-                  <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#10b981]" id="active-dot-1"></div>
-                  <div class="text-green-600 text-sm font-bold tracking-widest uppercase truncate" 
+                <div class="flex items-center gap-2 mb-1">
+                  <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" id="active-dot-1"></div>
+                  <div class="text-green-400 text-xs font-bold tracking-widest uppercase truncate" 
                        id="disp-t1-name">TEAM A</div>
                 </div>
-                <div class="text-5xl font-[Teko] leading-none score-display text-gray-800 font-bold" 
+                <div class="text-5xl font-[Teko] leading-none score-animation" 
                      id="disp-t1-score">0/0</div>
+                <div class="text-xs text-gray-400 mt-1">
+                  <span id="t1-overs">0.0</span> overs
+                </div>
               </div>
               
-              <!-- VS Badge in Middle -->
-              <div class="flex flex-col items-center px-6">
-                <div id="vs-badge" class="text-gray-400 text-xs uppercase tracking-widest mb-2 font-bold">
+              <div class="flex flex-col items-center px-4">
+                <div id="vs-badge" class="text-gray-500 text-[10px] uppercase tracking-widest mb-1">
                   VS
                 </div>
-                <div class="text-xs text-gray-500 font-medium bg-green-50 px-3 py-1 rounded-full">
-                  <span id="t1-overs">0.0</span> ov
+                
+                <div id="chase-equation" class="hidden flex-col items-center">
+                  <div class="text-[10px] text-yellow-400 uppercase tracking-widest font-bold mb-1">
+                    TO WIN
+                  </div>
+                  <div class="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-lg px-3 py-2">
+                    <div class="text-lg font-[Teko] leading-none text-yellow-300">
+                      NEED <span id="eq-runs" class="text-white text-2xl">0</span> 
+                      OFF <span id="eq-balls" class="text-white text-2xl">0</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div id="target-display" class="hidden mt-2">
+                  <div class="text-[9px] text-gray-400 uppercase">TARGET</div>
+                  <div class="text-2xl font-[Teko] text-white" id="target-score">0</div>
                 </div>
               </div>
               
-              <!-- Team 2 (Chasing/Yet to Bat) -->
               <div class="flex-1 text-right">
-                <div class="flex items-center justify-end gap-3 mb-2">
-                  <div class="text-blue-600 text-sm font-bold tracking-widest uppercase truncate" 
+                <div class="flex items-center justify-end gap-2 mb-1">
+                  <div class="text-blue-400 text-xs font-bold tracking-widest uppercase truncate" 
                        id="disp-t2-name">TEAM B</div>
-                  <div class="w-3 h-3 bg-blue-500 rounded-full opacity-50" id="active-dot-2"></div>
+                  <div class="w-2 h-2 bg-blue-500 rounded-full opacity-50" id="active-dot-2"></div>
                 </div>
-                <div class="text-5xl font-[Teko] leading-none score-display text-gray-800 font-bold opacity-70" 
+                <div class="text-5xl font-[Teko] leading-none opacity-50" 
                      id="disp-t2-score">0/0</div>
-              </div>
-            </div>
-            
-            <!-- Target Score Display (Hidden in 1st inning) -->
-            <div id="target-display" class="hidden text-center mb-3">
-              <div class="text-xs text-gray-500 uppercase font-bold mb-1">🎯 TARGET</div>
-              <div class="text-2xl font-[Teko] text-gray-800 font-bold bg-gradient-to-r from-yellow-100 to-yellow-50 px-4 py-2 rounded-xl inline-block" id="target-score">0</div>
-            </div>
-            
-            <!-- Chase Equation Row (Separate row below scores) -->
-            <div id="chase-equation" class="hidden chase-display-row">
-              <div class="flex items-center justify-between">
-                <div class="text-left">
-                  <div class="text-xs text-yellow-600 uppercase tracking-widest font-bold mb-1">
-                    NEED TO WIN
-                  </div>
-                  <div class="text-xl font-[Teko] leading-none">
-                    <span id="eq-runs" class="text-gray-800 text-3xl font-bold">0</span>
-                    <span class="text-yellow-600 text-sm ml-2 font-medium">runs</span>
-                  </div>
-                </div>
-                <div class="text-center">
-                  <div class="text-xs text-yellow-600 uppercase tracking-widest font-bold mb-1">
-                    BALLS LEFT
-                  </div>
-                  <div class="text-xl font-[Teko] leading-none">
-                    <span id="eq-balls" class="text-gray-800 text-3xl font-bold">0</span>
-                  </div>
-                </div>
-                <div class="text-right">
-                  <div class="text-xs text-yellow-600 uppercase tracking-widest font-bold mb-1">
-                    REQ. RATE
-                  </div>
-                  <div class="text-xl font-[Teko] leading-none">
-                    <span id="eq-rrr" class="text-gray-800 text-3xl font-bold">0.0</span>
-                  </div>
+                <div class="text-xs text-gray-400 mt-1 opacity-50">
+                  <span id="t2-overs">0.0</span> overs
                 </div>
               </div>
             </div>
             
             <!-- Match Info -->
-            <div class="flex justify-between items-center border-t border-green-100 pt-4 mt-4">
+            <div class="flex justify-between items-center border-t border-white/10 pt-3">
               <div class="text-center">
-                <div class="text-xs text-gray-500 font-bold mb-1">OVERS</div>
-                <div class="text-2xl font-[Teko] text-gray-800 font-bold" id="main-overs">0.0</div>
+                <div class="text-xs text-gray-400">OVERS</div>
+                <div class="text-2xl font-[Teko] text-white" id="main-overs">0.0</div>
               </div>
               
               <div class="text-center">
-                <div class="text-xs text-gray-500 font-bold mb-1">CRR</div>
-                <div class="text-2xl font-[Teko] text-gray-800 font-bold" id="main-crr">0.0</div>
+                <div class="text-xs text-gray-400">CRR</div>
+                <div class="text-2xl font-[Teko] text-white" id="main-crr">0.0</div>
               </div>
               
               <div class="text-center">
-                <div class="text-xs text-gray-500 font-bold mb-1">RRR</div>
-                <div class="text-2xl font-[Teko] text-gray-800 font-bold" id="main-rrr">0.0</div>
+                <div class="text-xs text-gray-400">RRR</div>
+                <div class="text-2xl font-[Teko] text-white" id="main-rrr">0.0</div>
               </div>
             </div>
             
             <!-- Commentary -->
-            <div class="mt-4 pt-4 border-t border-green-100">
-              <div id="commentary-text" class="commentary-text">
+            <div class="mt-3 pt-3 border-t border-white/10">
+              <div id="commentary-text" class="text-sm font-mono text-cyan-300 text-center">
                 Match Started
               </div>
             </div>
@@ -1043,35 +663,35 @@
         </div>
 
         <!-- Next Inning Button -->
-        <div id="next-inning-btn" class="hidden px-5 mb-5">
+        <div id="next-inning-btn" class="hidden px-4 mb-4">
           <button
             onclick="startSecondInning()"
-            class="w-full py-5 next-inning-btn rounded-2xl font-[Teko] text-2xl uppercase tracking-widest shadow-xl"
+            class="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl font-[Teko] text-2xl uppercase tracking-widest shadow-lg hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transform hover:-translate-y-1 transition-all active:scale-95 text-white"
           >
-            🏃 Start Chase
+            Start Chase 🏏
           </button>
         </div>
 
         <!-- Controls Section -->
-        <div class="p-5 glass-light rounded-t-3xl flex-1">
+        <div class="p-4 glass-dark rounded-t-3xl flex-1">
           <!-- Custom Run Input -->
-          <div class="mb-8">
-            <div class="text-xs text-purple-600 uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
-              <span class="w-3 h-3 bg-purple-500 rounded-full shadow-[0_0_8px_#8b5cf6]"></span>
+          <div class="mb-6">
+            <div class="text-xs text-purple-400 uppercase tracking-widest font-bold mb-2 flex items-center gap-1">
+              <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
               Custom Run + Wicket
             </div>
-            <div class="flex gap-4">
+            <div class="flex gap-3">
               <input
                 type="number"
                 id="custom-run"
                 min="0"
                 max="6"
-                placeholder="0-6"
-                class="flex-1 border-2 border-purple-200 text-gray-800 text-center text-xl p-4 rounded-2xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_20px_rgba(139,92,246,0.2)] transition-all font-bold"
+                placeholder="Runs"
+                class="flex-1 bg-slate-800/50 border border-slate-700 text-white text-center text-xl p-3 rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition"
               />
               <button
                 onclick="addCustomWicket()"
-                class="btn-neon btn-custom flex-1 rounded-2xl h-auto text-lg font-bold py-4"
+                class="btn-neon btn-custom flex-1 rounded-xl h-auto text-lg font-bold"
               >
                 RUN + WICKET
               </button>
@@ -1079,108 +699,108 @@
           </div>
 
           <!-- Keypad -->
-          <div class="game-grid grid grid-cols-3 gap-4 mb-6">
+          <div class="game-grid grid grid-cols-3 gap-3 mb-4">
             <button
               onclick="addScore(0)"
-              class="btn-neon btn-run rounded-2xl h-20 text-3xl font-bold font-[Teko]"
+              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko]"
             >
               0
             </button>
             <button
               onclick="addScore(1)"
-              class="btn-neon btn-run rounded-2xl h-20 text-3xl font-bold font-[Teko]"
+              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko]"
             >
               1
             </button>
             <button
               onclick="addScore(2)"
-              class="btn-neon btn-run rounded-2xl h-20 text-3xl font-bold font-[Teko]"
+              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko]"
             >
               2
             </button>
             <button
               onclick="addScore(3)"
-              class="btn-neon btn-run rounded-2xl h-20 text-3xl font-bold font-[Teko]"
+              class="btn-neon btn-run rounded-xl h-20 text-3xl font-bold font-[Teko]"
             >
               3
             </button>
             <button
               onclick="addScore(4)"
-              class="btn-neon btn-four rounded-2xl h-20 text-4xl font-black font-[Teko] italic"
+              class="btn-neon btn-four rounded-xl h-20 text-4xl font-black font-[Teko] italic"
             >
               4
             </button>
             <button
               onclick="addScore(6)"
-              class="btn-neon btn-six rounded-2xl h-20 text-4xl font-black font-[Teko] italic"
+              class="btn-neon btn-six rounded-xl h-20 text-4xl font-black font-[Teko] italic"
             >
               6
             </button>
             <button
               onclick="addWicket()"
-              class="btn-neon btn-out rounded-2xl h-20 text-xl font-bold"
+              class="btn-neon btn-out rounded-xl h-20 text-xl font-bold"
             >
               OUT
             </button>
             <button
               onclick="addExtra()"
-              class="btn-neon bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl h-20 text-sm font-bold text-white"
+              class="btn-neon bg-gradient-to-r from-orange-600 to-red-600 rounded-xl h-20 text-sm font-bold text-white"
             >
               WD/NB
             </button>
             <button
               onclick="undo()"
-              class="btn-neon undo-btn rounded-2xl h-20 text-sm font-bold"
+              class="btn-neon bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl h-20 text-sm font-bold text-gray-300"
             >
               UNDO
             </button>
           </div>
 
           <!-- Statistics Section (Initially Hidden) -->
-          <div id="stats-section" class="hidden space-y-8 pt-8 stats-section">
-            <h3 class="text-center text-gray-600 uppercase tracking-[0.3em] text-xs mb-4 font-bold">
-              📈 Match Statistics
+          <div id="stats-section" class="hidden space-y-6 pt-6 border-t border-slate-800">
+            <h3 class="text-center text-gray-400 uppercase tracking-[0.2em] text-xs mb-2">
+              Match Statistics
             </h3>
 
             <!-- Run Rate Graph -->
-            <div class="glass-card rounded-2xl p-6">
-              <div class="flex justify-between items-center mb-6">
-                <span class="text-sm font-bold text-green-600 uppercase">Runs Per Over</span>
-                <span class="text-xs text-gray-500 font-medium">Each bar = 1 over</span>
+            <div class="glass-card rounded-xl p-4">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-xs font-bold text-green-400 uppercase">Runs Per Over</span>
+                <span class="text-[10px] text-gray-500">Each bar = 1 over</span>
               </div>
-              <div class="h-44 w-full flex items-end gap-4 overflow-x-auto pb-4 px-3" id="chart-container">
-                <div class="text-gray-400 text-sm w-full text-center self-center">
+              <div class="h-40 w-full flex items-end gap-3 overflow-x-auto pb-4 px-2" id="chart-container">
+                <div class="text-gray-500 text-xs w-full text-center self-center">
                   No runs yet
                 </div>
               </div>
             </div>
 
             <!-- Ball History -->
-            <div class="glass-card rounded-2xl p-6">
-              <span class="text-sm font-bold text-blue-600 uppercase block mb-4 border-b border-blue-100 pb-3">
+            <div class="glass-card rounded-xl p-4">
+              <span class="text-xs font-bold text-blue-400 uppercase block mb-3 border-b border-gray-700 pb-2">
                 Ball by Ball History
               </span>
-              <div id="full-timeline" class="flex flex-wrap gap-3 justify-start min-h-[70px]">
-                <span class="text-gray-400 text-sm italic">Waiting for first ball...</span>
+              <div id="full-timeline" class="flex flex-wrap gap-2 justify-start min-h-[60px]">
+                <span class="text-gray-500 text-xs italic">Waiting for first ball...</span>
               </div>
             </div>
 
             <!-- Wickets List -->
-            <div class="glass-card rounded-2xl p-6">
-              <span class="text-sm font-bold text-red-600 uppercase block mb-4 border-b border-red-100 pb-3">
+            <div class="glass-card rounded-xl p-4">
+              <span class="text-xs font-bold text-red-400 uppercase block mb-3 border-b border-gray-700 pb-2">
                 Fall of Wickets
               </span>
-              <div id="wickets-list" class="space-y-3">
-                <span class="text-gray-400 text-sm italic block">No wickets fallen.</span>
+              <div id="wickets-list" class="space-y-2">
+                <span class="text-gray-500 text-xs italic block">No wickets fallen.</span>
               </div>
             </div>
 
             <!-- Share Button -->
             <button
               onclick="copyScore()"
-              class="w-full py-4 rounded-2xl share-btn text-sm uppercase tracking-widest font-bold mt-4"
+              class="w-full py-4 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition text-sm uppercase tracking-wider"
             >
-              📋 Share Scorecard
+              Share Scorecard
             </button>
           </div>
 
@@ -1188,9 +808,9 @@
           <button
             onclick="toggleStats()"
             id="view-stats-btn"
-            class="w-full py-4 rounded-2xl glass-card text-gray-600 hover:text-green-700 hover:bg-green-50 transition-all text-sm uppercase tracking-widest font-bold mt-6 hover:scale-105"
+            class="w-full py-3 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition text-sm uppercase tracking-wider mt-4"
           >
-            📊 View Statistics ▼
+            View Statistics ▼
           </button>
         </div>
       </div>
@@ -1220,27 +840,6 @@
           winner: null,
         },
       };
-
-      /* --- THEME MANAGEMENT --- */
-      function getCurrentTheme() {
-        return 'light'; // Always light theme
-      }
-
-      function toggleTheme() {
-        // Theme toggle is disabled as we're always in light mode
-        // But we keep the animation for visual feedback
-        const toggleBtn = document.getElementById('theme-toggle');
-        toggleBtn.classList.add('theme-switch-animation');
-        setTimeout(() => {
-          toggleBtn.classList.remove('theme-switch-animation');
-        }, 600);
-        playSound("click");
-      }
-
-      // Initialize theme as light
-      function initTheme() {
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
 
       /* --- UTILITIES --- */
       function updateTossLabels() {
@@ -1462,13 +1061,12 @@
         
         // Update UI
         document.getElementById("next-inning-btn").classList.add("hidden");
-        document.getElementById("active-indicator").style.background = 
-          "linear-gradient(90deg, #3b82f6, #60a5fa)";
+        document.getElementById("active-indicator").className = 
+          "absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-blue-500 to-transparent";
         
         document.getElementById("active-dot-1").classList.remove("animate-pulse");
         document.getElementById("active-dot-2").classList.remove("opacity-50");
         document.getElementById("active-dot-2").classList.add("animate-pulse");
-        document.getElementById("active-dot-2").style.boxShadow = "0 0 10px #3b82f6";
         
         document.getElementById("disp-t1-score").classList.remove("score-animation");
         document.getElementById("disp-t1-score").classList.add("opacity-50");
@@ -1502,7 +1100,7 @@
         document.getElementById("winner-score2").innerText = 
           `${game.status.t2Score}/${game.status.t2Wick}`;
         
-        // Create confetti with green theme
+        // Create confetti
         createConfetti();
         playSound("win");
       }
@@ -1531,16 +1129,14 @@
         const container = document.getElementById("confetti-container");
         container.innerHTML = '';
         
-        const colors = ['#10b981', '#22c55e', '#84cc16', '#34d399', '#65a30d', '#a3e635'];
+        const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
         
-        for (let i = 0; i < 150; i++) {
+        for (let i = 0; i < 100; i++) {
           const confetti = document.createElement("div");
           confetti.className = "confetti";
           confetti.style.left = `${Math.random() * 100}%`;
           confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
           confetti.style.animation = `confetti-fall ${1 + Math.random() * 2}s linear ${Math.random() * 0.5}s forwards`;
-          confetti.style.width = `${8 + Math.random() * 8}px`;
-          confetti.style.height = confetti.style.width;
           
           container.appendChild(confetti);
         }
@@ -1557,10 +1153,10 @@
         
         if (game.status.inning === 1) {
           t1ScoreEl.classList.add("score-animation");
-          setTimeout(() => t1ScoreEl.classList.remove("score-animation"), 400);
+          setTimeout(() => t1ScoreEl.classList.remove("score-animation"), 300);
         } else {
           t2ScoreEl.classList.add("score-animation");
-          setTimeout(() => t2ScoreEl.classList.remove("score-animation"), 400);
+          setTimeout(() => t2ScoreEl.classList.remove("score-animation"), 300);
         }
         
         // Calculate overs and rates
@@ -1586,12 +1182,10 @@
           const ballsLeft = totalBalls - game.status.balls;
           const oversLeft = ballsLeft / 6;
           
-          // Update chase equation row
           document.getElementById("eq-runs").innerText = Math.max(0, needed);
           document.getElementById("eq-balls").innerText = Math.max(0, ballsLeft);
-          const requiredRate = ballsLeft > 0 ? ((needed / oversLeft) || 0).toFixed(1) : "0.0";
-          document.getElementById("eq-rrr").innerText = requiredRate;
-          document.getElementById("main-rrr").innerText = requiredRate;
+          document.getElementById("main-rrr").innerText = 
+            ballsLeft > 0 ? ((needed / oversLeft) || 0).toFixed(1) : "0.0";
         } else {
           document.getElementById("main-rrr").innerText = "0.0";
         }
@@ -1611,9 +1205,9 @@
         renderVisuals();
       }
 
-      /* --- RUN RATE GRAPH FUNCTION --- */
+      /* --- FIXED RUN RATE GRAPH FUNCTION --- */
       function renderVisuals() {
-        // 1. RUN RATE GRAPH
+        // 1. RUN RATE GRAPH - FIXED VERSION
         const chartDiv = document.getElementById("chart-container");
         chartDiv.innerHTML = "";
         
@@ -1623,7 +1217,7 @@
         );
         
         if (relevantHistory.length === 0) {
-          chartDiv.innerHTML = '<div class="text-gray-400 text-sm w-full text-center self-center">No runs yet</div>';
+          chartDiv.innerHTML = '<div class="text-gray-500 text-xs w-full text-center self-center">No runs yet</div>';
           renderTimelineAndWickets(relevantHistory);
           return;
         }
@@ -1661,38 +1255,37 @@
         
         // If no over data yet, show empty state
         if (overData.length === 0) {
-          chartDiv.innerHTML = '<div class="text-gray-400 text-sm w-full text-center self-center">No runs yet</div>';
+          chartDiv.innerHTML = '<div class="text-gray-500 text-xs w-full text-center self-center">No runs yet</div>';
         } else {
           // Find maximum runs for scaling
-          const maxRuns = Math.max(...overData, 10);
-          const chartHeight = 176;
+          const maxRuns = Math.max(...overData, 10); // Minimum 10 for better visualization
+          const chartHeight = 160; // Height of chart container
           
           overData.forEach((runs, overIndex) => {
-            const barHeight = Math.max((runs / maxRuns) * (chartHeight - 50), 25);
+            const barHeight = Math.max((runs / maxRuns) * (chartHeight - 40), 20);
             const isCurrentOver = overIndex === overData.length - 1 && ballInOver > 0 && ballInOver < 6;
             
             const bar = document.createElement("div");
             bar.className = `bar ${isCurrentOver ? "current" : "filled"}`;
             bar.style.height = `${barHeight}px`;
-            bar.style.width = "40px";
-            bar.style.transitionDelay = `${overIndex * 0.1}s`;
+            bar.style.width = "36px";
             
             // Run count on top
             const runsLabel = document.createElement("div");
-            runsLabel.className = "absolute -top-7 left-0 w-full text-center text-sm font-bold text-gray-700";
+            runsLabel.className = "absolute -top-6 left-0 w-full text-center text-xs font-bold text-white";
             runsLabel.innerText = runs;
             bar.appendChild(runsLabel);
             
             // Over number at bottom
             const overLabel = document.createElement("div");
-            overLabel.className = "absolute -bottom-7 left-0 w-full text-center text-xs text-gray-500 font-medium";
-            overLabel.innerText = `${overIndex + 1}`;
+            overLabel.className = "absolute -bottom-6 left-0 w-full text-center text-[10px] text-gray-400";
+            overLabel.innerText = `Over ${overIndex + 1}`;
             bar.appendChild(overLabel);
             
             // Add balls in current over indicator
             if (isCurrentOver) {
               const ballsLabel = document.createElement("div");
-              ballsLabel.className = "absolute top-2 left-0 w-full text-center text-[9px] text-yellow-700 font-bold";
+              ballsLabel.className = "absolute top-1 left-0 w-full text-center text-[8px] text-yellow-300 font-bold";
               ballsLabel.innerText = `${ballInOver}/6`;
               bar.appendChild(ballsLabel);
             }
@@ -1701,9 +1294,7 @@
           });
           
           // Scroll to show latest over
-          setTimeout(() => {
-            chartDiv.scrollLeft = chartDiv.scrollWidth;
-          }, 100);
+          chartDiv.scrollLeft = chartDiv.scrollWidth;
         }
         
         // 2. BALL HISTORY TIMELINE
@@ -1715,20 +1306,11 @@
         timelineDiv.innerHTML = "";
         
         if (relevantHistory.length === 0) {
-          timelineDiv.innerHTML = '<span class="text-gray-400 text-sm italic">Waiting for first ball...</span>';
+          timelineDiv.innerHTML = '<span class="text-gray-500 text-xs italic">Waiting for first ball...</span>';
         } else {
-          relevantHistory.forEach((h, index) => {
+          relevantHistory.forEach((h) => {
             const ball = document.createElement("div");
             ball.className = "stat-ball shrink-0";
-            ball.style.animationDelay = `${index * 0.05}s`;
-            ball.style.opacity = "0";
-            ball.style.transform = "translateY(10px)";
-            
-            setTimeout(() => {
-              ball.style.transition = "all 0.3s ease";
-              ball.style.opacity = "1";
-              ball.style.transform = "translateY(0)";
-            }, index * 50);
             
             if (h.type === "wicket") {
               ball.style.background = "linear-gradient(145deg, #ef4444, #dc2626)";
@@ -1751,12 +1333,12 @@
               ball.style.color = "#fff";
               ball.innerText = "4";
             } else if (h.val === 0) {
-              ball.style.background = "linear-gradient(145deg, #e5e7eb, #d1d5db)";
-              ball.style.color = "#6b7280";
+              ball.style.background = "linear-gradient(145deg, #334155, #1e293b)";
+              ball.style.color = "#94a3b8";
               ball.innerText = "•";
             } else {
               ball.innerText = h.val;
-              ball.style.background = "linear-gradient(145deg, #10b981, #059669)";
+              ball.style.background = "linear-gradient(145deg, #475569, #334155)";
               ball.style.color = "#fff";
             }
             timelineDiv.appendChild(ball);
@@ -1772,32 +1354,22 @@
         );
         
         if (wicketsOnly.length === 0) {
-          wicketsDiv.innerHTML = '<span class="text-gray-400 text-sm italic block">No wickets fallen.</span>';
+          wicketsDiv.innerHTML = '<span class="text-gray-500 text-xs italic block">No wickets fallen.</span>';
         } else {
           wicketsOnly.forEach((w, idx) => {
             const div = document.createElement("div");
-            div.className = "flex justify-between items-center text-sm border-b border-red-100 pb-3 mb-3";
-            div.style.animationDelay = `${idx * 0.1}s`;
-            div.style.opacity = "0";
-            div.style.transform = "translateX(-10px)";
-            
-            setTimeout(() => {
-              div.style.transition = "all 0.3s ease";
-              div.style.opacity = "1";
-              div.style.transform = "translateX(0)";
-            }, idx * 100);
+            div.className = "flex justify-between items-center text-sm border-b border-gray-800 pb-2 mb-2";
             
             const runsText = w.type === "run+wicket" ? ` (${w.val} runs)` : '';
             const overNumber = Math.floor(w.ballNum / 6);
             const ballInOver = w.ballNum % 6 || 6;
             
             div.innerHTML = `
-              <div class="flex items-center gap-2">
-                <span class="w-2 h-2 bg-red-500 rounded-full"></span>
-                <span class="text-red-600 font-bold">Wicket ${idx + 1}</span>
-                <span class="text-gray-500 text-xs">${runsText}</span>
+              <div>
+                <span class="text-red-400 font-bold">Wicket ${idx + 1}</span>
+                <span class="text-gray-400 text-xs ml-2">${runsText}</span>
               </div>
-              <span class="text-gray-500 text-xs bg-red-50 px-2 py-1 rounded-full">${overNumber}.${ballInOver}</span>
+              <span class="text-gray-400 text-xs">${overNumber}.${ballInOver}</span>
             `;
             wicketsDiv.appendChild(div);
           });
@@ -1811,15 +1383,12 @@
         
         if (statsSection.classList.contains("hidden")) {
           statsSection.classList.remove("hidden");
-          statsBtn.innerHTML = "📊 Hide Statistics ▲";
-          setTimeout(() => {
-            statsBtn.scrollIntoView({ behavior: 'smooth', block: 'end' });
-          }, 100);
+          statsBtn.innerHTML = "Hide Statistics ▲";
+          statsBtn.scrollIntoView({ behavior: 'smooth', block: 'end' });
         } else {
           statsSection.classList.add("hidden");
-          statsBtn.innerHTML = "📊 View Statistics ▼";
+          statsBtn.innerHTML = "View Statistics ▼";
         }
-        playSound("click");
       }
 
       function resetGame() {
@@ -1833,23 +1402,14 @@
       }
 
       function copyScore() {
-        const txt = `🏏 GullyPro Cricket Score Update 🏏\n\n${game.setup.t1}: ${game.status.t1Score}/${game.status.t1Wick}\n${game.setup.t2}: ${game.status.t2Score}/${game.status.t2Wick}\n\nPlay more at GullyPro Cricket!`;
+        const txt = `*Cricket Score Update*\n${game.setup.t1}: ${game.status.t1Score}/${game.status.t1Wick}\n${game.setup.t2}: ${game.status.t2Score}/${game.status.t2Wick}\n\nPowered by GullyPro Cricket`;
         navigator.clipboard.writeText(txt).then(() => {
-          alert("Scorecard copied to clipboard! 🎉");
+          alert("Scorecard copied to clipboard!");
         });
       }
 
-      // Initialize theme and game
-      initTheme();
+      // Initialize
       updateTossLabels();
-      
-      // Add some initial animations
-      setTimeout(() => {
-        const setupBtn = document.querySelector('#setup-screen button');
-        if (setupBtn) {
-          setupBtn.style.animation = 'pulse-glow 2s infinite';
-        }
-      }, 1000);
     </script>
   </body>
 </html>

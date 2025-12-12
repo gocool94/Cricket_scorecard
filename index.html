@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>Gully Cricket</title>
+    <title>Gully Cricket: Night Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Teko:wght@300;400;600;700&family=Roboto:wght@400;700;900&display=swap");
@@ -304,6 +304,27 @@
         pointer-events: none;
       }
 
+      /* Graph Bar Styles */
+      .bar {
+        width: 36px;
+        min-width: 36px;
+        background: #334155;
+        border-radius: 8px 8px 0 0;
+        position: relative;
+        transition: height 0.3s ease;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      }
+      
+      .bar.filled {
+        background: linear-gradient(to top, var(--neon-green), #22c55e);
+        box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+      }
+      
+      .bar.current {
+        background: linear-gradient(to top, var(--neon-gold), #eab308);
+        box-shadow: 0 0 15px rgba(234, 179, 8, 0.5);
+      }
+
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 6px;
@@ -335,6 +356,11 @@
         .btn-custom {
           height: 60px;
           font-size: 1rem;
+        }
+        
+        .bar {
+          width: 28px;
+          min-width: 28px;
         }
       }
     </style>
@@ -438,7 +464,7 @@
         <div class="flex-1">
           <h2 class="text-center text-4xl text-white mb-8 tracking-widest relative">
             <span class="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-              CRICKET PRO
+              MATCH SETUP
             </span>
             <div class="absolute bottom-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-green-500 to-blue-500"></div>
           </h2>
@@ -454,7 +480,7 @@
                 <input
                   type="text"
                   id="t1-name"
-                  value="Suresh Stars"
+                  value="Suresh Super Kings"
                   oninput="updateTossLabels()"
                   class="w-full bg-slate-800/50 border border-slate-700 text-white text-lg p-3 rounded-xl focus:outline-none focus:border-green-500 focus:shadow-[0_0_20px_rgba(34,197,94,0.3)] transition"
                 />
@@ -467,7 +493,7 @@
                 <input
                   type="text"
                   id="t2-name"
-                  value="Raj Warriors"
+                  value="Raj Challengers"
                   oninput="updateTossLabels()"
                   class="w-full bg-slate-800/50 border border-slate-700 text-white text-lg p-3 rounded-xl focus:outline-none focus:border-blue-500 focus:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition"
                 />
@@ -484,7 +510,7 @@
                 type="number"
                 id="match-overs"
                 placeholder="Ex: 5"
-                value="5"
+                value="8"
                 min="1"
                 max="20"
                 class="w-full bg-slate-800/50 border border-slate-700 text-white text-xl p-4 rounded-xl focus:outline-none focus:border-yellow-500 focus:shadow-[0_0_20px_rgba(234,179,8,0.4)] transition text-center"
@@ -739,10 +765,10 @@
             <!-- Run Rate Graph -->
             <div class="glass-card rounded-xl p-4">
               <div class="flex justify-between items-center mb-4">
-                <span class="text-xs font-bold text-green-400 uppercase">Run Rate Graph</span>
-                <span class="text-[10px] text-gray-500">Runs per over</span>
+                <span class="text-xs font-bold text-green-400 uppercase">Runs Per Over</span>
+                <span class="text-[10px] text-gray-500">Each bar = 1 over</span>
               </div>
-              <div class="h-32 w-full flex items-end gap-2 overflow-x-auto pb-2" id="chart-container">
+              <div class="h-40 w-full flex items-end gap-3 overflow-x-auto pb-4 px-2" id="chart-container">
                 <div class="text-gray-500 text-xs w-full text-center self-center">
                   No runs yet
                 </div>
@@ -772,7 +798,7 @@
             <!-- Share Button -->
             <button
               onclick="copyScore()"
-              class="w-full py-4 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition text-sm uppercase tracking-widest"
+              class="w-full py-4 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition text-sm uppercase tracking-wider"
             >
               Share Scorecard
             </button>
@@ -782,7 +808,7 @@
           <button
             onclick="toggleStats()"
             id="view-stats-btn"
-            class="w-full py-3 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition text-sm uppercase tracking-widest mt-4"
+            class="w-full py-3 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition text-sm uppercase tracking-wider mt-4"
           >
             View Statistics ▼
           </button>
@@ -1179,56 +1205,103 @@
         renderVisuals();
       }
 
+      /* --- FIXED RUN RATE GRAPH FUNCTION --- */
       function renderVisuals() {
-        // Run rate chart
+        // 1. RUN RATE GRAPH - FIXED VERSION
         const chartDiv = document.getElementById("chart-container");
         chartDiv.innerHTML = "";
         
-        let currentOverRuns = 0;
-        let ballCounter = 0;
-        let overData = [];
+        // Get history for current inning
         const relevantHistory = game.status.history.filter(
           (h) => h.inning === game.status.inning
         );
-
+        
+        if (relevantHistory.length === 0) {
+          chartDiv.innerHTML = '<div class="text-gray-500 text-xs w-full text-center self-center">No runs yet</div>';
+          renderTimelineAndWickets(relevantHistory);
+          return;
+        }
+        
+        // Calculate runs per over
+        let overData = [];
+        let currentOverRuns = 0;
+        let ballInOver = 0;
+        
         relevantHistory.forEach((h) => {
-          if (h.type === "run" || h.type === "run+wicket") currentOverRuns += h.val;
-          if (h.type === "extra") currentOverRuns += 1;
-          if (h.type !== "extra") ballCounter++;
-          if (ballCounter === 6) {
+          // Count only proper balls (not extras) for over completion
+          if (h.type !== "extra") {
+            ballInOver++;
+          }
+          
+          // Add runs to current over
+          if (h.type === "run" || h.type === "run+wicket") {
+            currentOverRuns += h.val;
+          } else if (h.type === "extra") {
+            currentOverRuns += 1; // Extras count as runs
+          }
+          
+          // Check if over is completed (6 proper balls)
+          if (ballInOver === 6) {
             overData.push(currentOverRuns);
             currentOverRuns = 0;
-            ballCounter = 0;
+            ballInOver = 0;
           }
         });
         
-        if (ballCounter > 0 || relevantHistory.length === 0) overData.push(currentOverRuns);
-        const max = Math.max(...overData, 8);
-
+        // Add current incomplete over if there are any runs
+        if (ballInOver > 0 || (currentOverRuns > 0 && ballInOver === 0)) {
+          overData.push(currentOverRuns);
+        }
+        
+        // If no over data yet, show empty state
         if (overData.length === 0) {
           chartDiv.innerHTML = '<div class="text-gray-500 text-xs w-full text-center self-center">No runs yet</div>';
         } else {
-          overData.forEach((runs, i) => {
-            const hPercent = Math.max((runs / max) * 100, 10);
+          // Find maximum runs for scaling
+          const maxRuns = Math.max(...overData, 10); // Minimum 10 for better visualization
+          const chartHeight = 160; // Height of chart container
+          
+          overData.forEach((runs, overIndex) => {
+            const barHeight = Math.max((runs / maxRuns) * (chartHeight - 40), 20);
+            const isCurrentOver = overIndex === overData.length - 1 && ballInOver > 0 && ballInOver < 6;
+            
             const bar = document.createElement("div");
-            bar.className = `bar shrink-0 w-8 ${i === overData.length - 1 ? "current" : "filled"}`;
-            bar.style.height = `${hPercent}%`;
+            bar.className = `bar ${isCurrentOver ? "current" : "filled"}`;
+            bar.style.height = `${barHeight}px`;
+            bar.style.width = "36px";
             
-            const lbl = document.createElement("div");
-            lbl.className = "absolute -top-4 left-0 w-full text-center text-[10px] text-white font-bold";
-            lbl.innerText = runs;
-            bar.appendChild(lbl);
+            // Run count on top
+            const runsLabel = document.createElement("div");
+            runsLabel.className = "absolute -top-6 left-0 w-full text-center text-xs font-bold text-white";
+            runsLabel.innerText = runs;
+            bar.appendChild(runsLabel);
             
-            const overLbl = document.createElement("div");
-            overLbl.className = "absolute -bottom-4 left-0 w-full text-center text-[9px] text-gray-400";
-            overLbl.innerText = i + 1;
-            bar.appendChild(overLbl);
+            // Over number at bottom
+            const overLabel = document.createElement("div");
+            overLabel.className = "absolute -bottom-6 left-0 w-full text-center text-[10px] text-gray-400";
+            overLabel.innerText = `Over ${overIndex + 1}`;
+            bar.appendChild(overLabel);
+            
+            // Add balls in current over indicator
+            if (isCurrentOver) {
+              const ballsLabel = document.createElement("div");
+              ballsLabel.className = "absolute top-1 left-0 w-full text-center text-[8px] text-yellow-300 font-bold";
+              ballsLabel.innerText = `${ballInOver}/6`;
+              bar.appendChild(ballsLabel);
+            }
             
             chartDiv.appendChild(bar);
           });
+          
+          // Scroll to show latest over
+          chartDiv.scrollLeft = chartDiv.scrollWidth;
         }
+        
+        // 2. BALL HISTORY TIMELINE
+        renderTimelineAndWickets(relevantHistory);
+      }
 
-        // Ball history timeline
+      function renderTimelineAndWickets(relevantHistory) {
         const timelineDiv = document.getElementById("full-timeline");
         timelineDiv.innerHTML = "";
         
@@ -1271,8 +1344,8 @@
             timelineDiv.appendChild(ball);
           });
         }
-
-        // Wickets list
+        
+        // 3. WICKETS LIST
         const wicketsDiv = document.getElementById("wickets-list");
         wicketsDiv.innerHTML = "";
         
@@ -1288,12 +1361,15 @@
             div.className = "flex justify-between items-center text-sm border-b border-gray-800 pb-2 mb-2";
             
             const runsText = w.type === "run+wicket" ? ` (${w.val} runs)` : '';
+            const overNumber = Math.floor(w.ballNum / 6);
+            const ballInOver = w.ballNum % 6 || 6;
+            
             div.innerHTML = `
               <div>
                 <span class="text-red-400 font-bold">Wicket ${idx + 1}</span>
                 <span class="text-gray-400 text-xs ml-2">${runsText}</span>
               </div>
-              <span class="text-gray-400 text-xs">Ball ${w.ballNum}</span>
+              <span class="text-gray-400 text-xs">${overNumber}.${ballInOver}</span>
             `;
             wicketsDiv.appendChild(div);
           });
@@ -1336,5 +1412,4 @@
       updateTossLabels();
     </script>
   </body>
-
 </html>
